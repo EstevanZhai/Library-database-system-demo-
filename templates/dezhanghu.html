@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>删除账户</title>
+
+    <style>
+
+        * {
+
+            padding: 0;
+
+            margin: 0;
+
+        }
+
+        .firstBox h5 {
+
+            font-size: 30px;
+
+            color: #000;
+
+            font-weight: 700;
+
+        }
+
+        .firstBox table {
+
+            border: 1px solid #E6E6E6;
+
+            margin: 15px 0px;
+
+        }
+
+        .firstBox table thead {
+
+            background: #E6E6E6;
+
+        }
+
+        .firstBox table tr td {
+
+            width: 150px;
+
+            text-align: center;
+
+        }
+
+        .firstBox button {
+
+            width: 100px;
+
+            height: 40px;
+
+            background-color: #97c5d7;
+            border-color: #97c5d7;
+            border-radius:5px;
+
+            border: 1px solid #C7D3E6;
+
+            text-align: center;
+
+            line-height: 40px;
+
+            font-size: 16px;
+
+            color: #f5f2f2;
+
+            cursor: pointer;
+
+        }
+
+        #threeBox {
+
+            margin: 20px 0px 0px;
+
+            background: #E6E6E6;
+
+            height: 250px;
+
+            width: 310px;
+
+            position: relative;
+
+            display: none;
+
+        }
+
+        #threeBox .threeBox_lever {
+
+            width: 290px;
+
+            height: 200px;
+
+            background: #fff;
+
+            border: 1px solid #ccc;
+
+            border-radius: 5px;
+
+            position: absolute;
+
+            right: 0;
+
+            top: 0;
+
+            left: 0;
+
+            bottom: 0;
+
+            margin: auto;
+
+        }
+
+        .threeBox_lever_three {
+
+            width: calc(100% - 10px);
+
+            height: calc(100% - 10px);
+
+            padding: 5px;
+
+        }
+
+        .threeBox_lever_three .three_title {
+
+            width: 100%;
+
+            height: 40px;
+
+            background: #E6E6E6;
+
+            border: 1px solid #ccc;
+
+            border-radius: 5px;
+
+        }
+
+        .threeBox_lever_three .three_title p {
+
+            font-size: 16px;
+
+            color: #000;
+
+            line-height: 40px;
+
+            padding-left: 10px;
+
+            font-weight: 700;
+
+        }
+
+        .threeBox_lever_three form {
+
+            width: calc(100% - 20px);
+
+            margin: 10px;
+
+            border-bottom: 1px solid #ccc;
+
+            height: calc(100% - 100px);
+
+        }
+
+        .threeBox_lever_three form input {
+
+            height: 20px;
+
+            line-height: 20px;
+
+            padding: 0px 10px;
+
+            margin: 5px;
+
+            cursor: pointer;
+
+        }
+
+        .threeBox_lever_three .three_footer {
+
+            height: 30px;
+
+            text-align: right;
+
+            padding-right: 10px;
+
+        }
+
+        .threeBox_lever_three .three_footer button {
+
+            height: 40px;
+
+            background: #E6E6E6;
+
+            border: 1px solid #C7D3E6;
+
+            text-align: center;
+
+            line-height: 20px;
+
+            font-size: 16px;
+
+            color: #000;
+
+            cursor: pointer;
+
+        }
+
+        .threeBox_lever_three .three_footer button:first-of-type {
+
+            width: 120px;
+
+            padding: 0px 10px;
+
+        }
+
+        .threeBox_lever_three .three_footer button:last-of-type {
+
+            width: 50px;
+
+        }
+
+        .show {
+
+            display: block !important;
+
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+<div style="margin:10px;">
+
+    <!-- 第一部分 -->
+
+    <div class="firstBox">
+     <button id="button">删除用户</button>
+    <div id="threeBox">
+
+        <div class="threeBox_lever">
+
+            <div class="threeBox_lever_three">
+
+                <div class="three_title">
+
+                    <p>删除用户</p>
+
+                </div>
+
+                <form method="post">
+
+                    <label style="float:left">账号：
+                        <input type="text" name="Uid" required="required" placeholder="请输入账号">
+                    </label>
+                    <label style="float:left">类型：
+
+                        <input type="text" name="type" required="required" placeholder="请输入类型">
+
+                    </label>
+
+                    <button type="submit"
+                            style="margin-top: 30px;margin-left: 30px;margin-right: 20px;height: 35px;width: 70px;font-size: 14px;background-color: lightseagreen;border-color: lightseagreen;color: white">
+                        删除账户
+                    </button>
+                    <button type="button" onclick="qx()"
+                                style="height: 35px;width: 70px;font-size: 14px;background-color: lightseagreen;border-color: lightseagreen;color: white">取消
+                        </button>
+
+
+                </form>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+        <h5>已有的账户：</h5>
+
+        <table style="width: 60%;margin-left: 10%;margin-right: 10%">
+
+            <thead>
+
+                <tr>
+                    <th style="width: 30%">用户账号</th>
+                    <th style="width: 30%">用户密码</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+            {% for data in u %}
+                    <tr>
+                        <th>{{ data[0] }}</th>
+                        <th>{{ data[1] }}</th>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+
+    </div>
+    </div>
+
+</body>
+
+<script>
+    function  qx(){
+        window.location.href="/admin?user={{ user }}";
+    }
+    window.onload = function () {
+
+        document.getElementById("button").onclick = function () {
+
+            document.getElementById("threeBox").classList.add("show")
+
+        }
+
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>导览 - 图书馆数据库系统</title>
+    <style type="text/css">
+        .top {
+            z-index: 2;
+            /* 设置宽度高度背景颜色 */
+            height: 50px;
+            width: 100%;
+            padding-left: 10%;
+            background: rgb(151, 188, 204);
+            position: fixed;
+            /*固定在顶部*/
+            top: 0;
+            /*离顶部的距离为0*/
+        }
+
+        .top ul {
+            /* 清除ul标签的默认样式 */
+            width: 100%;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .top ul li {
+            width: 10%;
+            float: left;
+            /* 使li内容横向浮动，即横向排列  */
+            margin-right: 2%;
+            /* 两个li之间的距离*/
+        }
+
+        .top ul li a {
+            /* 设置链接内容显示的格式*/
+            display: block;
+            /* 把链接显示为块元素可使整个链接区域可点击 */
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            /* 去除下划线 */
+        }
+
+        .top li a:hover {
+            /* 鼠标选中时背景变为黑色 */
+            background-color: #87e1ef;
+        }
+
+        .top ul li ul {
+            /* 设置二级菜单 */
+            width: 100%;
+            background: rgba(37, 111, 175, 0.91);
+            position: relative;
+            display: none;
+            /* 默认隐藏二级菜单的内容 */
+        }
+
+        .top ul li ul li {
+            /* 二级菜单li内容的显示 */
+            margin: 0;
+            padding: 0;
+            float: none;
+            text-align: center;
+            width: 100%;
+        }
+
+        .top ul li ul li a {
+            /* 设置链接内容显示的格式*/
+            display: block;
+            /* 把链接显示为块元素可使整个链接区域可点击 */
+            color: white;
+            text-align: center;
+            width: 100%;
+            padding: 14px 2%;
+            text-decoration: none;
+            /* 去除下划线 */
+        }
+
+        .top ul li:hover ul {
+            /* 鼠标选中二级菜单内容时 */
+            display: block;
+        }
+
+
+    </style>
+
+    <style type="text/css">
+        .leftside {
+            height: 600px;
+            width: 15%;
+            background-color: rgb(151, 193, 212);
+            margin-left: 5%;
+            margin-top: 100px;
+            float: left;
+        }
+
+        .leftside ul {
+            overflow: hidden;
+            font-size: large;
+            float: left;
+            margin-left: 0;
+            line-height: 50px;
+            height: 50px;
+            width: 180px;
+            margin-bottom: 0;
+        }
+
+        .leftside ul a {
+            height: 60px;
+            width: 180px;
+            color: #216372;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .leftside ul a:hover {
+            background-color: #a8d1e7;
+        }
+    </style>
+
+    <style>
+        .container {
+            float: left;
+            width: 60%;
+            min-height: 600px;
+            margin: 100px;
+            background-color: rgba(38, 159, 229, 0.34);
+        }
+
+        .container p {
+            text-indent: 2em;
+        }
+    </style>
+
+    <script>
+        function show() {
+            document.getElementById("container").innerHTML = "12345";
+        }
+    </script>
+
+<body>
+<div class="top" style="float: left;">
+    <div>
+        <center>
+            <ul>
+                <li><img src="../static/01.png" alt="logo" height="45px"></li>
+                <li>
+                    <a href="/?user={{ user }}">首页</a>
+                </li>
+                <li><a href="/search?user={{ user }}">搜索</a>
+                </li>
+                <li><a href="/guide?user={{ user }}&floor=">&nbsp;&nbsp;导览&nbsp;&nbsp;</a>
+                    <ul>
+                        <li><a onclick="location.href='/guide?floor=5&user={{ user }}'">&nbsp;&nbsp;五楼&nbsp;&nbsp;</a></li>
+                        <li><a onclick="location.href='/guide?floor=4&user={{ user }}'">&nbsp;&nbsp;四楼&nbsp;&nbsp;</a></li>
+                        <li><a onclick="location.href='/guide?floor=3&user={{ user }}'">&nbsp;&nbsp;三楼&nbsp;&nbsp;</a></li>
+                        <li><a onclick="location.href='/guide?floor=2&user={{ user }}'">&nbsp;&nbsp;二楼&nbsp;&nbsp;</a></li>
+                        <li><a onclick="location.href='/guide?floor=1&user={{ user }}'">&nbsp;&nbsp;一楼&nbsp;&nbsp;</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="support?user={{ user }}">支持我们</a>
+                </li>
+                {% if login %}
+                    <li style="width: 160px"><a href="">您好，{{ user }}！</a><ul style="width: 160px"><a href="/">退出登录</a> </ul></li>
+                {% else %}
+                    <li><a href="/login">登录</a></li>
+                {% endif %}
+            </ul>
+        </center>
+    </div>
+</div>
+<div class="leftside">
+    <ul><a onclick="location.href='/guide?floor=5&user={{ user }}'">&nbsp;&nbsp;五楼&nbsp;&nbsp;</a></ul>
+    <ul><a onclick="location.href='/guide?floor=4&user={{ user }}'">&nbsp;&nbsp;四楼&nbsp;&nbsp;</a></ul>
+    <ul><a onclick="location.href='/guide?floor=3&user={{ user }}'">&nbsp;&nbsp;三楼&nbsp;&nbsp;</a></ul>
+    <ul><a onclick="location.href='/guide?floor=2&user={{ user }}'">&nbsp;&nbsp;二楼&nbsp;&nbsp;</a></ul>
+    <ul><a onclick="location.href='/guide?floor=1&user={{ user }}'">&nbsp;&nbsp;一楼&nbsp;&nbsp;</a></ul>
+</div>
+<div class="container" id="container">
+    {% for data in datalist %}
+        <div style="margin-bottom: 5px;background-color: rgba(132,141,149,0.13);margin-left: 5%;margin-right: 5%;height: auto" align="left">
+            <h1 style="list-style-type: circle"><a href="{{ data[7] }}" style="color: #4a9bda"> 《{{ data[1] }}》</a><span
+                            style="float: right;color: #f5f4b9">&nbsp;人气排名：{{ data[9] }}&nbsp;&nbsp;&nbsp;</span></h1>
+            <h2 style="margin-left: 33px;font-size:20px;color:#1e5262">作者及出版社：{{ data[2] }}</h2>
+            <h3 style="margin-left: 35px;color: #652626">评分：{{ data[4] }}</h3>
+            <h3 style="margin-left: 35px;color: #652626">评价人数：{{ data[3] }}</h3>
+            <h3 style="margin-left: 35px;color:#1e5262">简介：<span
+                    style="font-family: 'SimHei';font-size: xx-large;color: darkgray">“</span><span
+                    style="font-family: FangSong">{{ data[6] }}</span><span
+                    style="font-family: SimHei;font-size: xx-large;color: darkgray">”</span></h3>
+            <h3 style="margin-left: 35px;padding-bottom: 10px;color:#1e5262">
+                定价：{{ data[5] }}元&nbsp;&nbsp;&nbsp;有无馆藏：{{ data[8] }}&nbsp;<span style="float: right;color:#1e5262"><button
+                    style="height: 30px;width: 70px;font-size: xx-small;border-radius:5px;background-color: #97c5d7;border-color: #73b0c0;color: white"
+                    onclick="location.href='/detail?id={{ data[0] }}&user={{ user }}'">详情</button>&nbsp;&nbsp;&nbsp;</span></h3>
+        </div>
+    {% endfor %}
+</div>
+</body>
+
+
+</html>

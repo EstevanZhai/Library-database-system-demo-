@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>导览 - 图书馆数据库系统</title>
+    <style type="text/css">
+        .top {
+            z-index: 2;
+            /* 设置宽度高度背景颜色 */
+            height: 50px;
+            width: 100%;
+            padding-left: 10%;
+            background: rgb(151, 188, 204);
+            position: fixed;
+            /*固定在顶部*/
+            top: 0;
+            /*离顶部的距离为0*/
+        }
+
+        .top ul {
+            /* 清除ul标签的默认样式 */
+            width: 100%;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .top ul li {
+            width: 10%;
+            float: left;
+            /* 使li内容横向浮动，即横向排列  */
+            margin-right: 2%;
+            /* 两个li之间的距离*/
+        }
+
+        .top ul li a {
+            /* 设置链接内容显示的格式*/
+            display: block;
+            /* 把链接显示为块元素可使整个链接区域可点击 */
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            /* 去除下划线 */
+        }
+
+        .top li a:hover {
+            /* 鼠标选中时背景变为黑色 */
+            background-color: #87e1ef;
+        }
+
+        .top ul li ul {
+            /* 设置二级菜单 */
+            width: 100%;
+            background: rgba(37, 111, 175, 0.91);
+            position: relative;
+            display: none;
+            /* 默认隐藏二级菜单的内容 */
+        }
+
+        .top ul li ul li {
+            /* 二级菜单li内容的显示 */
+            margin: 0;
+            padding: 0;
+            float: none;
+            text-align: center;
+            width: 100%;
+        }
+
+        .top ul li ul li a {
+            /* 设置链接内容显示的格式*/
+            display: block;
+            /* 把链接显示为块元素可使整个链接区域可点击 */
+            color: white;
+            text-align: center;
+            width: 100%;
+            padding: 14px 2%;
+            text-decoration: none;
+            /* 去除下划线 */
+        }
+
+        .top ul li:hover ul {
+            /* 鼠标选中二级菜单内容时 */
+            display: block;
+        }
+
+
+    </style>
+
+    <style type="text/css">
+        .leftside {
+            height: 600px;
+            width: 15%;
+            background-color: rgba(29, 172, 191, 0.47);
+            margin-left: 5%;
+            margin-top: 100px;
+            float: left;
+        }
+
+        .leftside ul {
+            overflow: hidden;
+            font-size: large;
+            float: left;
+            margin-left: 0;
+            line-height: 50px;
+            height: 50px;
+            width: 180px;
+            margin-bottom: 0;
+        }
+
+        .leftside ul a {
+            height: 60px;
+            width: 180px;
+            color: #216372;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .leftside ul a:hover {
+            background-color: #51bae8;
+        }
+    </style>
+
+    <style>
+        .container {
+            float: left;
+            width: 60%;
+            min-height: 600px;
+            margin: 100px;
+            background-color: rgba(38, 159, 229, 0.34);
+        }
+
+        .container p {
+            text-indent: 2em;
+        }
+    </style>
+
+    <script>
+        function show() {
+            document.getElementById("notice").textContent = "您还没有登录，请先登录";
+            document.getElementById("notice").style.color = "#9e1d1d";
+        }
+    </script>
+
+<body>
+<div class="top" style="float: left;">
+    <table>
+        <center>
+            <ul>
+                <li><img src="../static/01.png" alt="logo" height="45px"></li>
+                <li>
+                    <a href="/?user={{ user }}">首页</a>
+                </li>
+                <li>
+                    {% if login %}
+                    <a href="/search?user={{ user }}">搜索</a>
+                    {% else %}
+                    <a onclick="show()">搜索</a>
+                    {% endif %}
+                </li>
+                <li><a href="/guide?user={{ user }}&floor=">&nbsp;&nbsp;导览&nbsp;&nbsp;</a>
+                    <ul>
+                        <li><a onclick="location.href='/guide?floor=5&user={{ user }}'">&nbsp;&nbsp;五楼&nbsp;&nbsp;</a></li>
+                        <li><a onclick="location.href='/guide?floor=4&user={{ user }}'">&nbsp;&nbsp;四楼&nbsp;&nbsp;</a></li>
+                        <li><a onclick="location.href='/guide?floor=3&user={{ user }}'">&nbsp;&nbsp;三楼&nbsp;&nbsp;</a></li>
+                        <li><a onclick="location.href='/guide?floor=2&user={{ user }}'">&nbsp;&nbsp;二楼&nbsp;&nbsp;</a></li>
+                        <li><a onclick="location.href='/guide?floor=1&user={{ user }}'">&nbsp;&nbsp;一楼&nbsp;&nbsp;</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="support?user={{ user }}">支持我们</a>
+                </li>
+                {% if login %}
+                    <li style="width: 160px"><a href="">您好，{{ user }}！</a>
+                        <ul style="width: 160px"><a onclick="location.href='/'">退出登录</a></ul>
+                    </li>
+                {% else %}
+                    <li><a href="/login">登录</a></li>
+                {% endif %}
+            </ul>
+        </center>
+    </table>
+</div>
+<div class="leftside">
+    <ul><a onclick="location.href='/guide?floor=5&user={{ user }}'">&nbsp;&nbsp;五楼&nbsp;&nbsp;</a></ul>
+    <ul><a onclick="location.href='/guide?floor=4&user={{ user }}'">&nbsp;&nbsp;四楼&nbsp;&nbsp;</a></ul>
+    <ul><a onclick="location.href='/guide?floor=3&user={{ user }}'">&nbsp;&nbsp;三楼&nbsp;&nbsp;</a></ul>
+    <ul><a onclick="location.href='/guide?floor=2&user={{ user }}'">&nbsp;&nbsp;二楼&nbsp;&nbsp;</a></ul>
+    <ul><a onclick="location.href='/guide?floor=1&user={{ user }}'">&nbsp;&nbsp;一楼&nbsp;&nbsp;</a></ul>
+</div>
+<div class="container" id="container">
+    <h2 id="notice" style="text-align:center;color: #5d8da4;margin-top: 15%;" >欢迎使用图书馆数据库系统！<br>点击右上角“登录”登入个人账号<br></h2>
+     <h2 style="text-align:center;color: cadetblue;margin-top: 5%;">"Welcome to the library database system"</h2>
+
+</div>
+</body>
+
+
+</html>

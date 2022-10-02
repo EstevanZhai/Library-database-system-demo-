@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Movebook</title>
+
+    <style>
+
+        * {
+
+            padding: 0;
+
+            margin: 0;
+
+        }
+
+        .firstBox h5 {
+
+            font-size: 30px;
+
+            color: #000;
+
+            font-weight: 700;
+
+        }
+
+        .firstBox table {
+
+            border: 1px solid #E6E6E6;
+
+            margin: 15px 0px;
+
+        }
+
+        .firstBox table thead {
+
+            background: #E6E6E6;
+
+        }
+
+        .firstBox table tr td {
+
+            width: 150px;
+
+            text-align: center;
+
+        }
+
+        .firstBox button {
+
+            width: 100px;
+
+            height: 40px;
+
+            background-color: #97c5d7;
+            border-color: #97c5d7;
+            border-radius:5px;
+
+            border: 1px solid #C7D3E6;
+
+            text-align: center;
+
+            line-height: 40px;
+
+            font-size: 16px;
+
+            color: #f5f2f2;
+
+            cursor: pointer;
+
+        }
+
+        #twoBox {
+            margin: auto;
+            background: #E6E6E6;
+
+            height: 210px;
+
+            width: 350px;
+
+            position: center;
+
+            display: none;
+
+        }
+
+        #twoBox .twoBox_lever {
+
+            width: 350px;
+
+            height: 210px;
+
+            background: #fff;
+
+            border: 1px solid #ccc;
+
+            border-radius: 5px;
+
+            position: center;
+
+            right: 0;
+
+            top: 0;
+
+            left: 0;
+
+            bottom: 0;
+
+            margin: auto;
+
+        }
+
+
+        .twoBox_lever_two {
+
+            width: calc(100% - 10px);
+
+            height: calc(100% - 10px);
+
+            padding: 5px;
+
+        }
+
+        .twoBox_lever_two .two_title {
+
+            width: 100%;
+
+            height: 40px;
+
+            background: #E6E6E6;
+
+            border: 1px solid #ccc;
+
+            border-radius: 5px;
+
+        }
+
+        .twoBox_lever_two .two_title p {
+
+            font-size: 16px;
+
+            color: #000;
+
+            line-height: 40px;
+
+            padding-left: 10px;
+
+            font-weight: 700;
+
+        }
+
+        .twoBox_lever_two form {
+
+            width: calc(100% - 20px);
+
+            margin: 10px;
+
+            border-bottom: 1px solid #ccc;
+
+            height: calc(100% - 100px);
+
+        }
+
+        .twoBox_lever_two form input {
+
+            height: 20px;
+
+            line-height: 20px;
+
+            padding: 0px 10px;
+
+            margin: 5px;
+
+            cursor: pointer;
+
+        }
+
+        .twoBox_lever_two .two_footer {
+
+            height: 40px;
+
+            text-align: right;
+
+            padding-right: 10px;
+
+        }
+
+        .twoBox_lever_two .two_footer button {
+
+            height: 30px;
+
+            background: #E6E6E6;
+
+            border: 1px solid #C7D3E6;
+
+            text-align: right;
+
+            line-height: 30px;
+
+            font-size: 16px;
+
+            color: #000;
+
+            cursor: pointer;
+
+        }
+
+        .twoBox_lever_two .two_footer button:first-of-type {
+
+            width: 120px;
+
+            padding: 0px 10px;
+
+        }
+
+        .twoBox_lever_two .two_footer button:last-of-type {
+
+            width: 50px;
+
+        }
+
+        .show {
+
+            display: block !important;
+
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+
+<div style="margin:10px;">
+
+    <!-- 第一部分 -->
+
+    <div class="firstBox">
+
+
+        <button id="button">更改书籍位置</button>
+
+    </div>
+
+    <!-- 第二部分 -->
+
+    <div id="twoBox">
+
+        <div class="twoBox_lever">
+
+            <div class="twoBox_lever_two">
+
+                <div class="two_title">
+
+                    <p>书籍位置更新</p>
+
+                </div>
+
+                <form  method="post" class="form">
+                    <label style="float:left">更新后的楼层：
+
+                        <input type="text" name="floor" required="required" placeholder="请输入楼层"/>
+                    </label>
+                     <label style="float:left">更新后的区：
+
+                        <input type="text" name="area" required="required" placeholder="请输入区域"/>
+                    </label>
+                     <label style="float:left">更新后的书架：
+
+                        <input type="text" name="shelf" required="required" placeholder="请输入书架"/>
+                    </label>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <button type="submit"
+                            style="margin-left:5%;text-align:center;border-radius:5px;height: 30px;width: 300px;font-size: xx-small;background-color: #699b9b;border-color: #508e9b;color: white">
+                        确认修改
+                    </button>
+
+                </form>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+<script>
+
+    window.onload = function () {
+
+        document.getElementById("button").onclick = function () {
+
+            document.getElementById("twoBox").classList.add("show")
+
+        }
+
+    }
+
+</script>
+
+</html>

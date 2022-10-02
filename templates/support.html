@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style type="text/css">
+        .top {
+            /* 设置宽度高度背景颜色 */
+            height: 50px;
+            width: 100%;
+            background: rgb(151, 188, 204);
+            position: fixed;
+            /*固定在顶部*/
+            top: 0;
+            /*离顶部的距离为0*/
+        }
+
+        .top ul {
+            /* 清除ul标签的默认样式 */
+            width: 85%;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .top li {
+            width: 120px;
+            float: left;
+            /* 使li内容横向浮动，即横向排列  */
+            margin-right: 80px;
+            /* 两个li之间的距离*/
+        }
+
+        .top li a {
+            /* 设置链接内容显示的格式*/
+            display: block;
+            /* 把链接显示为块元素可使整个链接区域可点击 */
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            /* 去除下划线 */
+        }
+
+        .top li a:hover {
+            /* 鼠标选中时背景变为黑色 */
+            background-color: #87e1ef;
+        }
+
+        .top ul li ul {
+            /* 设置二级菜单 */
+            width: 120px;
+            background: rgba(37, 111, 175, 0.91);
+            position: absolute;
+            display: none;
+            /* 默认隐藏二级菜单的内容 */
+        }
+
+        .top ul li ul li {
+            /* 二级菜单li内容的显示 */
+            margin-right: 0;
+            float: none;
+            text-align: center;
+        }
+
+        .top ul li:hover ul {
+            /* 鼠标选中二级菜单内容时 */
+            display: block;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>支持我们</title>
+</head>
+<body>
+<div class="top" style="float: left;">
+    <div>
+        <center>
+            <ul>
+                <li><img src="../static/01.png" alt="logo" height="45px"></li>
+                <li>
+                    <a href="/?user={{ user }}">首页</a>
+                </li>
+                <li><a href="/search?user={{ user }}">搜索</a>
+                </li>
+                <li><a href="/guide?user={{ user }}&floor=">&nbsp;&nbsp;导览&nbsp;&nbsp;</a>
+                    <ul>
+                        <li><a onclick="location.href='/guide?user={{ user }}&floor=5'">&nbsp;&nbsp;五楼&nbsp;&nbsp;</a></li>
+                        <li><a onclick="location.href='/guide?user={{ user }}&floor=4'">&nbsp;&nbsp;四楼&nbsp;&nbsp;</a></li>
+                        <li><a onclick="location.href='/guide?user={{ user }}&floor=3'">&nbsp;&nbsp;三楼&nbsp;&nbsp;</a></li>
+                        <li><a onclick="location.href='/guide?user={{ user }}&floor=2'">&nbsp;&nbsp;二楼&nbsp;&nbsp;</a></li>
+                        <li><a onclick="location.href='/guide?user={{ user }}&floor=1'">&nbsp;&nbsp;一楼&nbsp;&nbsp;</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/support?user={{ user }}">支持我们</a>
+                </li>
+                    <li style="width: 160px"><a href="">您好，{{ user }}！</a>
+                        <ul style="width: 160px"><a onclick="location.href='/'">退出登录</a></ul>
+                    </li>
+            </ul>
+        </center>
+    </div>
+</div>
+<div align="center">
+    <h2>感谢您的支持！</h2>
+<img src="../static/02.png" alt="支持我们" height="500px"></div>
+</body>
+</html>

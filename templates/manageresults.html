@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ keytext }} - 搜索</title>
+    <style type="text/css">
+        .top {
+            z-index: 2;
+            /* 设置宽度高度背景颜色 */
+            height: 50px;
+            width: 100%;
+            padding-left: 10%;
+            background: rgb(151, 188, 204);
+            position: fixed;
+            /*固定在顶部*/
+            top: 0;
+            /*离顶部的距离为0*/
+        }
+
+        .top ul {
+            /* 清除ul标签的默认样式 */
+            width: 100%;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .top ul li {
+            width: 10%;
+            float: left;
+            /* 使li内容横向浮动，即横向排列  */
+            margin-right: 2%;
+            /* 两个li之间的距离*/
+        }
+
+        .top ul li a {
+            /* 设置链接内容显示的格式*/
+            display: block;
+            /* 把链接显示为块元素可使整个链接区域可点击 */
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            /* 去除下划线 */
+        }
+
+        .top li a:hover {
+            /* 鼠标选中时背景变为黑色 */
+            background-color: #87e1ef;
+        }
+
+        .top ul li ul {
+            /* 设置二级菜单 */
+            width: 100%;
+            background: rgba(37, 111, 175, 0.91);
+            position: relative;
+            display: none;
+            /* 默认隐藏二级菜单的内容 */
+        }
+
+        .top ul li ul li {
+            /* 二级菜单li内容的显示 */
+            margin: 0;
+            padding: 0;
+            float: none;
+            text-align: center;
+            width: 100%;
+        }
+
+        .top ul li ul li a {
+            /* 设置链接内容显示的格式*/
+            display: block;
+            /* 把链接显示为块元素可使整个链接区域可点击 */
+            color: white;
+            text-align: center;
+            width: 100%;
+            padding: 14px 2%;
+            text-decoration: none;
+            /* 去除下划线 */
+        }
+
+        .top ul li:hover ul {
+            /* 鼠标选中二级菜单内容时 */
+            display: block;
+        }
+
+
+    </style>
+    <style>
+        #twoBox {
+
+            z-index: 2;
+            margin: auto;
+            background: #E6E6E6;
+
+            height: 260px;
+
+            width: 350px;
+
+            position: center;
+
+            display: none;
+
+        }
+
+        #twoBox .twoBox_lever {
+
+            width: 350px;
+
+            height: 260px;
+
+            background: #fff;
+
+            border: 1px solid #ccc;
+
+            border-radius: 5px;
+
+            position: center;
+
+            right: 0;
+
+            top: 0;
+
+            left: 0;
+
+            bottom: 0;
+
+            margin: auto;
+
+        }
+
+        .twoBox_lever_two {
+
+            width: calc(100% - 10px);
+
+            height: calc(100% - 200px);
+
+            padding: 5px;
+
+        }
+
+        .twoBox_lever_two .two_title {
+
+            width: 100%;
+
+            height: 40px;
+
+            background: #E6E6E6;
+
+            border: 1px solid #ccc;
+
+            border-radius: 5px;
+
+        }
+
+        .twoBox_lever_two .two_title p {
+
+            font-size: 16px;
+
+            color: #000;
+
+            line-height: 15px;
+
+            padding-left: 10px;
+
+            font-weight: 700;
+
+        }
+
+        .twoBox_lever_two form {
+
+            width: calc(100% - 20px);
+
+            margin: 10px;
+
+            border-bottom: 1px solid #ccc;
+
+            height: calc(100% - 100px);
+
+        }
+
+        .twoBox_lever_two form input {
+
+            height: 20px;
+
+            line-height: 20px;
+
+            padding: 0px 10px;
+
+            margin: 5px;
+
+            cursor: pointer;
+
+        }
+
+        .twoBox_lever_two .two_footer {
+
+            height: 40px;
+
+            text-align: right;
+
+            padding-right: 10px;
+
+        }
+
+        .twoBox_lever_two .two_footer button {
+
+            height: 20px;
+
+            background: #E6E6E6;
+
+            border: 1px solid #C7D3E6;
+
+            text-align: right;
+
+            line-height: 20px;
+
+            font-size: 16px;
+
+            color: #000;
+
+            cursor: pointer;
+
+        }
+
+        .twoBox_lever_two .two_footer button:first-of-type {
+
+            width: 120px;
+
+            padding: 0px 10px;
+
+        }
+
+        .twoBox_lever_two .two_footer button:last-of-type {
+
+            width: 50px;
+
+        }
+
+        .show {
+
+            display: block !important;
+
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="top" style="float: left;">
+    <div>
+        <center>
+            <ul>
+                <li><img src="../static/01.png" alt="logo" height="45px"></li>
+                <li>
+                    <a href="/admin?user={{ user }}">管理员首页</a>
+                </li>
+                <li><a href="/admin?user={{ user }}">搜索</a>
+                </li>
+                <li><a href="/guide?user={{ user }}&floor=">&nbsp;&nbsp;导览&nbsp;&nbsp;</a>
+                    <ul>
+                        <li><a onclick="location.href='/guide?user={{ user }}&floor=5'">&nbsp;&nbsp;五楼&nbsp;&nbsp;</a>
+                        </li>
+                        <li><a onclick="location.href='/guide?user={{ user }}&floor=4'">&nbsp;&nbsp;四楼&nbsp;&nbsp;</a>
+                        </li>
+                        <li><a onclick="location.href='/guide?user={{ user }}&floor=3'">&nbsp;&nbsp;三楼&nbsp;&nbsp;</a>
+                        </li>
+                        <li><a onclick="location.href='/guide?user={{ user }}&floor=2'">&nbsp;&nbsp;二楼&nbsp;&nbsp;</a>
+                        </li>
+                        <li><a onclick="location.href='/guide?user={{ user }}&floor=1'">&nbsp;&nbsp;一楼&nbsp;&nbsp;</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/support?user={{ user }}">支持我们</a>
+                </li>
+                <li style="width: 160px"><a href="">您好，{{ user }}！</a>
+                    <ul style="width: 160px">
+                        <li style="width: 160px"><a onclick="location.href='/admin?user={{ user }}'">管理员面板</a></li>
+                        <li style="width: 160px"><a onclick="location.href='/'">退出登录</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </center>
+    </div>
+</div>
+<div style="z-index: 1;margin-top: 40px;position: fixed;width: 100%;height: auto;background-image: linear-gradient(to top,rgba(255,254,254,0.05),rgba(116,186,222,0.11),rgba(150,205,227,0.84));padding-bottom: 1%;z-index: 1;">
+    <h1 style="text-align: center;color:#add2e6;font-size: xxx-large;font-family: 'Broadway'">LIBRARY&nbsp;&nbsp;BOOK&nbsp;&nbsp;SEARCH</h1>
+    <form action="{{ url_for('manageresults') }}" method="post">
+        <label>
+            <input type="text" value="{{ keytext }}" name="关键字" placeholder=" 请输入关键字" required="required"
+                   style="height: 50px;width: 44%;margin-left: 25%;border-radius:10px;font-size: x-large;text-overflow: ellipsis">
+        </label>
+        <button type="submit"
+                style="height: 50px;width: 110px;border-radius:12px;font-size: x-large;background-color: #99c4d5;border-color: #99b1c7">搜索
+        </button>
+    </form>
+</div>
+<div id="container" style="width: 100%;padding-top: 275px;text-align: center;">
+    <div style="height: 100%;width: 100%;text-align: center">
+        <table id="myTable" style="text-align: center;padding:8px;border:1px solid #50abb8;width:80%;height: 100%;margin-left: 5%;margin-right: 5%">
+            <tr style="background-color:#8cb8db;height: 40px">
+                <td style="width:17%;font-weight: bolder;color: #ffffff">&nbsp;书名：</td>
+                <td style="width:25%;font-weight: bolder;color: #ffffff">&nbsp;简介：</td>
+                <td style="width:8%;font-weight: bolder;color: #ffffff">&nbsp;定价：</td>
+                <td style="width:8%;font-weight: bolder;color: #ffffff">&nbsp;有无馆藏：</td>
+                <td style="width:5%;font-weight: bolder;color: #ffffff">&nbsp;评分：</td>
+                <td style="width:7%;font-weight: bolder;color: #ffffff">&nbsp;评价人数：</td>
+                <td style="width:7%;font-weight: bolder;color: #ffffff"></td>
+                <td style="width:6.5%;font-weight: bolder;color: #ffffff"></td>
+                <td style="width:6.5%;font-weight: bolder;color: #ffffff"></td>
+
+            </tr>
+            {% for data in datalist %}
+
+                <tr style="background-color:#ffffff">
+                    <td style="font-weight: bolder">《{{ data[1] }}》</td>
+                    <td style="font-family: FangSong,serif;font-weight: bolder">{{ data[6] }}</td>
+                    <td>{{ data[5] }}元</td>
+                    <td>{{ data[8] }}</td>
+                    <td>{{ data[4] }}</td>
+                    <td>{{ data[3] }}</td>
+                    <td>
+                        <button id="button" onclick="jy(this)" name="{{ data[9] }}"  style="margin-top:5%;border-radius:5px;height: 35px;font-size: xx-small;background-color: #7facc1;border-color: #81a6d0;color: white">&nbsp;&nbsp;借阅/归还&nbsp;&nbsp;</button>
+
+                    </td>
+                        <td align="center">
+                            <form method="post" class="form"><label>
+                                <input name="Bid" value="{{ data[9] }}" hidden>
+                            </label>
+                                <button type="submit" style="margin-left: 18%;margin-top:5%;border-radius:5px;height: 35px;font-size: xx-small;background-color: #73a7c2;border-color: #81a6d0;color: white" onclick="showred(this)"  >&nbsp;&nbsp;删除&nbsp;&nbsp;</button>
+                       </form> </td>
+
+                    <td >
+                        <button  style="margin-left: 18%; margin-top:5%;border-radius:5px;height: 35px;font-size: xx-small;background-color: #73a7c2;border-color: #81a6d0;color: white" onclick="window.location.href ='movebook?id={{ data[9] }}&user=admin'">&nbsp;&nbsp;移动&nbsp;&nbsp;</button>
+                    </td>
+
+
+                </tr>
+            {% endfor %}
+        </table>
+        <div id="twoBox">
+
+            <div class="twoBox_lever">
+
+                <div class="twoBox_lever_two">
+                    <div class="two_title">
+                        <p>借阅/归还</p>
+                    </div>
+                    <form method="post" class="form">
+
+                        <label>
+                            <input id="twoboxid" name="Bid" value="" hidden>
+                            </label>
+                        <label style="float: left"> 借阅：
+                            <input type="radio" name="br" value="已借出"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;归还：
+                            <input type="radio" name="br" value="已归还"/></label>
+                        <br/>
+                        <label style="float:left">账号：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" name="Uid" required="required" placeholder="请输入账号"/>
+                        </label>
+                        <label style="float:left">开始时间：
+                            <input type="text" name="Btime" required="required" placeholder="请输入开始时间"/>
+                        </label>
+                        <br>
+                        <label style="float:left">结束时间：
+                            <input type="text" name="Etime" required="required" placeholder="请输入结束时间"/>
+                        </label>
+                        <button type="submit" onclick="qd()"
+                                style="margin-left: 18%;margin-top:5%;border-radius:5px;height: 30px;width: 100px;font-size: xx-small;background-color: #73a7c2;border-color: #81a6d0;color: white">
+                            确定
+                        </button>
+
+                        <button type="button" onclick="qx()"
+                                style="border-radius:5px;height: 30px;width: 100px;font-size: xx-small;background-color: #73a7c2;border-color: #81a6d0;color: white">取消
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+<script>
+
+        function qd() {
+            window.location.href = "jieguo";
+        }
+
+        function qx() {
+            window.location.href = "admin";
+        }
+
+        function jy(obj){
+            document.getElementById("twoBox").classList.add("show");
+            document.getElementById("twoboxid").value=obj.name;
+        }
+
+
+</script>
+
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>《{{ data[1] }}》- 详情</title>
+    <style type="text/css">
+        .top {
+            z-index: 2;
+            /* 设置宽度高度背景颜色 */
+            height: 50px;
+            width: 100%;
+            padding-left: 10%;
+            background: rgb(151, 188, 204);
+            position: fixed;
+            /*固定在顶部*/
+            top: 0;
+            /*离顶部的距离为0*/
+        }
+
+        .top ul {
+            /* 清除ul标签的默认样式 */
+            width: 100%;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .top ul li {
+            width: 10%;
+            float: left;
+            /* 使li内容横向浮动，即横向排列  */
+            margin-right: 2%;
+            /* 两个li之间的距离*/
+        }
+
+        .top ul li a {
+            /* 设置链接内容显示的格式*/
+            display: block;
+            /* 把链接显示为块元素可使整个链接区域可点击 */
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            /* 去除下划线 */
+        }
+
+        .top li a:hover {
+            /* 鼠标选中时背景变为黑色 */
+            background-color: #87e1ef;
+        }
+
+        .top ul li ul {
+            /* 设置二级菜单 */
+            width: 100%;
+            background: rgba(37, 111, 175, 0.91);
+            position: relative;
+            display: none;
+            /* 默认隐藏二级菜单的内容 */
+        }
+
+        .top ul li ul li {
+            /* 二级菜单li内容的显示 */
+            margin: 0;
+            padding: 0;
+            float: none;
+            text-align: center;
+            width: 100%;
+        }
+
+        .top ul li ul li a {
+            /* 设置链接内容显示的格式*/
+            display: block;
+            /* 把链接显示为块元素可使整个链接区域可点击 */
+            color: white;
+            text-align: center;
+            width: 100%;
+            padding: 14px 2%;
+            text-decoration: none;
+            /* 去除下划线 */
+        }
+
+        .top ul li:hover ul {
+            /* 鼠标选中二级菜单内容时 */
+            display: block;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+<div class="top" style="float: left;">
+    <div>
+        <center>
+            <ul>
+                <li><img src="../static/01.png" alt="logo" height="45px">
+                <li>
+                    <a href="/?user={{ user }}">首页</a>
+                </li>
+                <li><a href="/search?user={{ user }}">搜索</a>
+                </li>
+                <li><a href="/guide?user={{ user }}&floor=">&nbsp;&nbsp;导览&nbsp;&nbsp;</a>
+                    <ul>
+                        <li>
+                            <a onclick="location.href='/guide?user={{ user }}&floor=5'">&nbsp;&nbsp;五楼&nbsp;&nbsp;</a>
+                        </li>
+                        <li>
+                            <a onclick="location.href='/guide?user={{ user }}&floor=4'">&nbsp;&nbsp;四楼&nbsp;&nbsp;</a>
+                        </li>
+                        <li>
+                            <a onclick="location.href='/guide?user={{ user }}&floor=3'">&nbsp;&nbsp;三楼&nbsp;&nbsp;</a>
+                        </li>
+                        <li>
+                            <a onclick="location.href='/guide?user={{ user }}&floor=2'">&nbsp;&nbsp;二楼&nbsp;&nbsp;</a>
+                        </li>
+                        <li>
+                            <a onclick="location.href='/guide?user={{ user }}&floor=1'">&nbsp;&nbsp;一楼&nbsp;&nbsp;</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/support?user={{ user }}">支持我们</a>
+                </li>
+                <li style="width: 160px"><a href="">您好，{{ user }}！</a>
+                    <ul style="width: 160px"><a onclick="location.href='/'">退出登录</a></ul>
+                </li>
+            </ul>
+        </center>
+    </div>
+</div>
+
+<h1 style="color:#4a8a93;padding-top: 30px;text-align: center;font-size: xxx-large;font-family: 'Broadway'">详细信息及评价</h1>
+<h1 style="margin-bottom: 5px;background-color: #1d4365;margin-left: 50px;height: auto" align="left"></h1>
+<h1 style="margin-left: 35px"><a href="{{ data[7] }}" style="color: #4a9bda; "> 《{{ data[1] }}》</a><span
+        style="color: #7ea889;float: right">{{ data[9] }}&nbsp;&nbsp;&nbsp;</span><span
+        style="float: right;color: #7ea889">&nbsp;人气排名：</span>
+</h1>
+<h2 style="margin-left: 35px;font-size:20px;color:#1e5262">作者及出版社：{{ data[2] }}</h2>
+<h3 style="margin-left: 35px;color: #7ca16f">网络评分：{{ data[4] }}</h3>
+<span><h3 style="margin-left: 35px;color:#7ca16f">网上评价人数：{{ data[3] }}</h3></span>
+<h3 style="margin-left: 35px;color:#1e5262">简介：<span
+        style="font-family: 'SimHei';font-size: xx-large;color: darkgray">“</span><span
+        style="font-family: FangSong">{{ data[6] }}</span><span
+        style="font-family: SimHei;font-size: xx-large;color: darkgray">”</span></h3>
+<h3 style="margin-left: 35px;color:#1e5262;padding-bottom: 10px">定价：{{ data[5] }}元&nbsp;&nbsp;&nbsp;有无馆藏：{{ data[8] }}&nbsp;
+    {% if data[8]=="有" %}
+    <h3 style="color:#1e5262;margin-left: 35px;padding-bottom: 10px">所在位置：{{ data[11] }}层&nbsp;&nbsp;&nbsp;{{ data[12] }}区&nbsp;&nbsp;&nbsp;{{ data[13] }}书架</h3>
+    {% else %}
+        <h3 style="color:#1e5262;margin-left: 35px;padding-bottom: 10px">所在位置：暂无</h3>
+    {%endif %}
+    <span
+            style="float: right"><form method="post"><button
+            style="margin-right:40px;margin-bottom:30%;height: 40px;width: 100px;font-size:small;border-radius:5px;background-color: #8bc7dc;border-color: #97c5d7;color: white"
+            type="submit" name='借阅'>+借阅</button></form>&nbsp;&nbsp;&nbsp;</span>
+</h3>
+<div id="container" style="width: 100%;padding-top: 50px">
+    <form class="form" method="post">
+        <td>
+       <label style="margin-left: 5%"> 评分：
+            <input style="margin-top:10px;border-radius: 5px;height: 30px;width:100px;" type="text" name="mark" required="required" placeholder="请输入评分">
+
+       </label></td>
+        <td>
+        <label>评价：
+            <input style=" margin-top:10px;border-radius: 5px;height: 30px;width:290px;" type="text" name="comment" required="required" placeholder="请输入评价">
+        </label></td>
+        <td>  &nbsp;&nbsp;&nbsp;&nbsp;
+       <button type="submit" style="margin-left:5px;margin-top:10px;border-radius:5px;height:30px;width:80px;font-size:xx-small;border-color:#3f7694;background-color: #9dbfd2;color:#ffffff">确定</button>
+    </form></td>
+
+
+    <h4 style="margin-top:10px;margin-left: 46%;color: cadetblue;font-size:xx-large">读者评价</h4>
+        {% for data_1 in datalist_1 %}
+                    <h4 style="padding-left: 75px;color: #3a5c88">用户：{{ data_1[0] }}&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;评分：{{ data_1[1] }}</h4>
+                    <h4 style="padding-left: 75px;padding-bottom: 20px;color: #3a5c88">评价：{{ data_1[2] }}</h4>
+
+        {% endfor %}
+</div>
+</body>
+</html>

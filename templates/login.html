@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录 - 图书馆数据库系统</title>
+</head>
+<body>
+<div>
+    <h1 style="margin-top: 10%;text-align: center;font-size: xxx-large;font-family: 'Broadway';color: #324c65">LIBRARY&nbsp;&nbsp;DATABASE
+        <br>SYSTEM</h1>
+</div>
+<div>
+    <div style="text-align: center;">
+        <form action="{{ url_for('login') }}" method="post" class="form">
+            <label>
+                <input type="text" name="用户账号" placeholder="账号" required="required"
+                       style="align:center;height: 50px;width: 350px;margin-top: 15px;border-radius:30px;font-size: x-large;padding-left: 20px;"
+                       value="{{ id }}"/>
+            </label><br>
+            <label>
+                <input type="password" name="用户密码" placeholder="密码" required="required"
+                       style="height: 50px;width: 350px;margin-top: 15px;border-radius:30px;margin-bottom: 15px;font-size: x-large;padding-left: 20px"/>
+            </label><br>
+            <button type="submit" style="height: 90px;width: 90px;font-size: xx-large; background-image: linear-gradient(to right top,rgba(71,133,210,0.69),rgba(52,103,206,0.7));
+            border-color: rgba(62,131,234,0.44);color: white;font-weight: bolder;
+            border-radius:60px;">→
+            </button>
+            {% if showState %}
+                <p style="color: red">提示：用户名或密码错误！</p>
+            {% else %}
+                <p hidden>提示：用户名或密码错误！</p>
+            {% endif %}
+        </form>
+    </div>
+</div>
+</body>
+</html>
